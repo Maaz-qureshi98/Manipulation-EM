@@ -6,24 +6,32 @@
    https://franka1.robohub.eng.uwaterloo.ca/
 
 2. Start/reconnect Docker container:
+   ```bash
    cd ~/robohub/maaz
    ./uw_panda/start.sh panda_ros2_latest
+   ```
 
 3. Inside container (Terminal 1 — launch MoveIt + RViz):
+   ```bash
    cd ~/ws
    source /opt/ros/humble/setup.bash
    source install/setup.sh
    export DISPLAY=:0
    ros2 launch franka_moveit_config moveit.launch.py robot_ip:=franka2
+   ```
 
 4. New terminal into same container (Terminal 2 — run motion script):
-docker exec -it --workdir /home/robohub --user robohub uw_panda_ros2_robohub bash
-source /opt/ros/humble/setup.bash
-source ~/ws/install/setup.sh
-python3 ~/scripts/ab_motion.py
+   ```bash
+   docker exec -it --workdir /home/robohub --user robohub uw_panda_ros2_robohub bash
+   source /opt/ros/humble/setup.bash
+   source ~/ws/install/setup.sh
+   python3 ~/scripts/ab_motion.py
+   ```
 
-
-python3 /home/robohub/scripts/pose_logger.py "10 cm cube1.json"
+5. Record end-effector poses (optional):
+   ```bash
+   python3 /home/robohub/scripts/pose_logger.py "10 cm cube1.json"
+   ```
 
 ## Notes
 - Robot IP/hostname: franka2
